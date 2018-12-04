@@ -24,8 +24,8 @@ public class CreateAnAccount extends JFrame{
 	
 	private boolean CreateAccount()
 	{
-		String[] array = {First_Name.getText(), Last_Name.getText(), DOB.getText(), 
-				UserName.getText(), Password.getText(), Pin.getText()};
+		String[] array = {UserName.getText(), First_Name.getText(), Last_Name.getText(),
+				Pin.getText(),Password.getText(), DOB.getText()};
 		return Manager.CreateAccount(array);
 	}
 	private boolean checkinput(){
@@ -82,7 +82,7 @@ public class CreateAnAccount extends JFrame{
 			
 			Last_Name = new JTextField(10);
 			
-			DoB= new JLabel("Enter DOB MM/DD/YY");
+			DoB= new JLabel("Enter DOB MM-DD-YY");
 			
 			DOB = new JTextField(8);
 			//Second ROW

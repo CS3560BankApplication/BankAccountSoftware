@@ -15,14 +15,14 @@ public class DatabaseManager {
 	{
 		try {
 			String userName = "sa";
-			String passWord = "CS3650";
+			String passWord = "CS3560";
 			
-			String url = "jdbc:sqlserver://DESKTOP-MK8HBBS\\PROGRAMINGSERVER:1433";
+			String url = "jdbc:sqlserver://pc\\CS3560:1433";
 					
 			myConn = DriverManager.getConnection(url, userName, passWord);
 			
 			myStmt = myConn.createStatement();
-		
+			
 			myStmt.execute("use Bank");
 		
 		}
@@ -54,18 +54,18 @@ public class DatabaseManager {
 	{
 		try {
 			myStmt = myConn.createStatement();
-			myStmt.execute("use Accounts");
-			
-			String sql = "Insert into Accounts "
-					+ "";
+			 
+			String sql = "INSERT Accounts (User_Name, First_Name, Last_Name, Pin, Pass_Word, DOB) VALUES"
+					+ "(\'" + Array[0] + "\' , \' "+ Array [1] +"\' , \' " + Array[2] + "\' , \' " + Array[3] + "\' , \' " +Array[4] +"\' ,\'" + Array[5] + "\')" ;
 			myStmt.executeUpdate(sql);
 			return true;
 		}catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "ERROR: Creating an Account");
-			return false;
+			ex.printStackTrace();
+			createAccountsTable();
+			
 		}
-		
+		return false;
 	}
 	public Handle getHandle(String UserName, String PassWord, String Pin)
 	{
@@ -103,6 +103,7 @@ public class DatabaseManager {
 			
 			}catch(Exception ex){
 				
+				System.out.println("HELLO");
 				createAccountsTable();
 				
 			}
@@ -222,11 +223,12 @@ public class DatabaseManager {
 		
 		String line = "create table Accounts ("
 				+ "Account_Number int Primary Key identity(1,1),"
+				+ "User_Name varchar(30),"
 				+ "First_Name varchar(30),"
 				+ "Last_Name varchar(30),"
 				+ "Pin varchar(5),"
 				+ "Pass_Word varchar(30),"
-				+ "DOB date,)" ;
+				+ "DOB varchar(30),)" ;
 		
 		myStmt.execute(line);
 		
@@ -244,6 +246,7 @@ public class DatabaseManager {
 				myStmt = myConn.createStatement();
 	
 				myStmt.execute("create Database Bank");
+				
 				
 				myStmt.execute("use Bank");
 				
